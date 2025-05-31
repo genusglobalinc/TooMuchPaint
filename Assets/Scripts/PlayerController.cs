@@ -24,9 +24,11 @@ public class PlayerController : MonoBehaviour
     
     // Current submission
     private PaintingSubmission currentSubmission;
-    
+
+    private PaintScript paint;
     private void Start()
     {
+        paint = FindFirstObjectByType<PaintScript>();
         InitializePaintingCanvas();
         
         // Initialize with first color
@@ -56,18 +58,6 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartPainting();
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            ContinuePainting();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            StopPainting();
-        }
         
         // Color selection with number keys
         for (int i = 0; i < Mathf.Min(availableColors.Length, 9); i++)
@@ -75,6 +65,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 currentColor = availableColors[i];
+                Debug.Log(currentColor);
+                paint.paintColor = availableColors[i];
             }
         }
         
@@ -112,10 +104,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void StopPainting()
-    {
-        isPainting = false;
-    }
     
     private bool IsPointerOverCanvas(out Vector2 localPoint)
     {
@@ -245,6 +233,7 @@ public class PlayerController : MonoBehaviour
     public void SetColor(Color color)
     {
         currentColor = color;
+        paint.paintColor = currentColor;
     }
 }
 

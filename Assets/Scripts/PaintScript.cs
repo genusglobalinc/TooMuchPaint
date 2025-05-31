@@ -8,11 +8,19 @@ public class PaintScript : MonoBehaviour
 {
     private RawImage canvas;
     public int brushSize = 10;
-    public Color paintColor = Color.blue;
+    
     public int textureWidth = 512;
     public int textureHeight = 512;
     private Texture2D texture;
 
+    private PlayerController playerController;
+    private UIManager uiManager;
+    public Color paintColor = Color.red;
+    private bool isPainting = false;
+    private bool isErasing = false;
+    private Color previousColor;
+
+    public Slider brushSlider;
     void Start()
     {
         canvas = GetComponent<RawImage>();
@@ -20,10 +28,39 @@ public class PaintScript : MonoBehaviour
         texture.filterMode = FilterMode.Point;
         ClearCanvas(); // Use our clear method to initialize
         canvas.texture = texture;
+        
     }
     void Update()
     {
-        if (Input.GetMouseButton(0)) // Changed from GetKey to GetMouseButton for better detection
+        if (Input.GetMouseButtonDown(0)) // moved these from playercontroller
+        {
+            StartPainting();
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            ContinuePainting();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            StopPainting();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            StartErasing();
+            previousColor = paintColor;
+            paintColor = Color.white;
+        }
+        else if (Input.GetMouseButton(1))
+        {
+            ContinueErasing();
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            StopErasing();
+            paintColor = previousColor;
+            
+        }
+        if (isPainting)
         {
             Vector2 mousePos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.rectTransform, Input.mousePosition, Camera.main, out mousePos);
@@ -33,9 +70,47 @@ public class PaintScript : MonoBehaviour
             DrawCircle((int)px, (int)py);
             texture.Apply();
         }
+        if (isErasing) 
+        {
+            Vector2 mousePos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.rectTransform, Input.mousePosition, Camera.main, out mousePos);
+            Rect rect = canvas.rectTransform.rect;
+            float px = ((mousePos.x + rect.width / 2) / rect.width) * textureWidth;
+            float py = ((mousePos.y + rect.height / 2) / rect.height) * textureHeight;
+            DrawCircle((int)px, (int)py);
+            texture.Apply();
+
+        }
     }
+    private void StartPainting()
+    {
+        isPainting = true;
+    }
+    private void ContinuePainting()
+    {
+        if (!isPainting) return;
+    }
+    private void StopPainting()
+    {
+        isPainting = false;
+    }
+    private void StartErasing()
+    {
+        isErasing = true;
+    }
+    private void ContinueErasing()
+    {
+        if (!isErasing) return;
+    }
+    private void StopErasing()
+    {
+        isErasing = false;
+    }
+
+
     void DrawCircle(int cx, int cy)
     {
+        
         for (int x = -brushSize; x < brushSize; x++)
         {
             for (int y = -brushSize; y < brushSize; y++)
@@ -82,5 +157,12 @@ public class PaintScript : MonoBehaviour
         {
             Debug.LogError($"[PaintScript] Error clearing canvas: {e.Message}");
         }
+    }
+
+
+
+    public void BrushSlider(float newSize)
+    {
+        brushSize = Mathf.Clamp(Mathf.RoundToInt(newSize), 1, 100);
     }
 }

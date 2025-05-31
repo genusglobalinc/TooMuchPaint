@@ -163,6 +163,14 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    public void OnRedButtonPress()
+    {
+        if (player != null)
+        {
+            SelectColor(0); 
+        }
+    }
 }
 
 [System.Serializable]
