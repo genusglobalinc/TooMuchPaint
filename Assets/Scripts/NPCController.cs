@@ -22,7 +22,6 @@ public class NPCController : MonoBehaviour
     
     // Current attributes
     private NPCAttributes currentAttributes;
-    private bool isShowingAttributes = false;
     
     // Possible values for attributes
     private string[] possibleEmotions = { "Happy", "Sad", "Angry", "Surprised", "Neutral" };
@@ -37,21 +36,42 @@ public class NPCController : MonoBehaviour
     
     public void GenerateRandomAttributes()
     {
-        currentAttributes = new NPCAttributes
+        try
         {
-            emotion = possibleEmotions[Random.Range(0, possibleEmotions.Length)],
-            hairColor = new Color(Random.value, Random.value, Random.value),
-            eyeColor = new Color(Random.value, Random.value, Random.value),
-            accessory = possibleAccessories[Random.Range(0, possibleAccessories.Length)]
-        };
+            // Select random attributes
+            string emotion = possibleEmotions[Random.Range(0, possibleEmotions.Length)];
+            Color hairColor = new Color(Random.value, Random.value, Random.value);
+            Color eyeColor = new Color(Random.value, Random.value, Random.value);
+            string accessory = possibleAccessories[Random.Range(0, possibleAccessories.Length)];
+            
+            // Create the attributes object
+            currentAttributes = new NPCAttributes
+            {
+                emotion = emotion,
+                hairColor = hairColor,
+                eyeColor = eyeColor,
+                accessory = accessory
+            };
+            
+            // Log the generated attributes
+            Debug.Log($"[NPC] Generated new NPC with:\n" +
+                      $"  - Emotion: {emotion}\n" +
+                      $"  - Hair: {ColorToName(hairColor)} ({hairColor})\n" +
+                      $"  - Eyes: {ColorToName(eyeColor)} ({eyeColor})\n" +
+                      $"  - Accessory: {accessory}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[NPC] Error generating attributes: {e.Message}");
+        }
     }
     
     public void ShowAttributes()
     {
         if (currentAttributes == null) return;
         
-        // Show the attributes for a limited time
-        isShowingAttributes = true;
+        // Show the attributes for a limited time (attributes are currently disabled)
+        // We removed the isShowingAttributes flag since it's not used elsewhere
         
         // Update the display
         if (attributeText != null)
@@ -61,18 +81,30 @@ public class NPCController : MonoBehaviour
                               $"Eyes: {ColorToName(currentAttributes.eyeColor)}\n" +
                               $"Accessory: {currentAttributes.accessory}";
             
-            attributeText.gameObject.SetActive(true);
+            // Keep attribute text hidden but log the data for debugging
+            attributeText.gameObject.SetActive(false);
+            Debug.Log($"[NPCController] Generated NPC with attributes: " +
+                      $"Emotion={currentAttributes.emotion}, " +
+                      $"Hair={ColorToName(currentAttributes.hairColor)}, " +
+                      $"Eyes={ColorToName(currentAttributes.eyeColor)}, " +
+                      $"Accessory={currentAttributes.accessory}");
+            
+            // Ensure the NPC sprite is visible but text is hidden
+            if (GetComponent<SpriteRenderer>() != null)
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+                Debug.Log("[NPCController] NPC sprite enabled");
+            }
         }
-        
-        // Hide after delay
-        Invoke("HideAttributes", attributeDisplayTime);
     }
     
     private void HideAttributes()
     {
-        isShowingAttributes = false;
+        // Just hide the attribute text
         if (attributeText != null)
             attributeText.gameObject.SetActive(false);
+            
+        Debug.Log("[NPCController] Attributes hidden");
     }
     
     public bool CompareWithSubmission(PaintingSubmission submission)

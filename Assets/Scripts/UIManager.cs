@@ -22,8 +22,9 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        // Find the player
-        player = FindObjectOfType<PlayerController>();
+        // Find the player using newer API
+        player = FindFirstObjectByType<PlayerController>();
+        Debug.Log(player != null ? "[UIManager] Found PlayerController" : "[UIManager] PlayerController not found");
         
         // Set up color buttons
         if (player != null && colorButtons != null && colorButtons.Length > 0)
@@ -116,9 +117,33 @@ public class UIManager : MonoBehaviour
     
     public void OnClearButtonClicked()
     {
+        Debug.Log("[UIManager] Clear button clicked");
+        
         if (player != null)
         {
-            player.ClearCanvas();
+            try
+            {
+                // Check if the player has a PaintScript component instead of using PlayerController's ClearCanvas
+                PaintScript paintScript = FindFirstObjectByType<PaintScript>();
+                if (paintScript != null)
+                {
+                    Debug.Log("[UIManager] Using PaintScript.ClearCanvas()");
+                    paintScript.ClearCanvas();
+                }
+                else
+                {
+                    Debug.Log("[UIManager] Using PlayerController.ClearCanvas()");
+                    player.ClearCanvas();
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[UIManager] Error clearing canvas: {e.Message}");
+            }
+        }
+        else
+        {
+            Debug.LogError("[UIManager] Cannot clear canvas - player reference is null");
         }
     }
     

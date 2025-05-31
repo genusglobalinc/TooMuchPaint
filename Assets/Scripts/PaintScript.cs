@@ -18,24 +18,18 @@ public class PaintScript : MonoBehaviour
         canvas = GetComponent<RawImage>();
         texture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
         texture.filterMode = FilterMode.Point;
-        Color[] fillColor = new Color[textureWidth  * textureHeight];   
-        for (int i = 0; i < textureWidth; i++)
-        {
-            fillColor[i] = Color.white; //fill canvas white at start
-        }
-        texture.SetPixels(fillColor);
-        texture.Apply();
+        ClearCanvas(); // Use our clear method to initialize
         canvas.texture = texture;
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetMouseButton(0)) // Changed from GetKey to GetMouseButton for better detection
         {
             Vector2 mousePos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.rectTransform, Input.mousePosition, null, out mousePos);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.rectTransform, Input.mousePosition, Camera.main, out mousePos);
             Rect rect = canvas.rectTransform.rect;
-            float px = (mousePos.x - rect.x) / rect.width * textureWidth;
-            float py = (mousePos.y - rect.y) / rect.height * textureHeight;
+            float px = ((mousePos.x + rect.width/2) / rect.width) * textureWidth;
+            float py = ((mousePos.y + rect.height/2) / rect.height) * textureHeight;
             DrawCircle((int)px, (int)py);
             texture.Apply();
         }
@@ -50,12 +44,43 @@ public class PaintScript : MonoBehaviour
                 {
                     int px = cx + x;
                     int py = cy + y;
-                    if (px >= 0 && py < textureWidth && py >= 0 && py < textureHeight)
+                    if (px >= 0 && px < textureWidth && py >= 0 && py < textureHeight)
                     {
                         texture.SetPixel(px, py, paintColor);
                     }
                 }
             }
+        }
+    }
+    
+    public void ClearCanvas()
+    {
+        try
+        {
+            Debug.Log("[PaintScript] Clearing canvas...");
+            
+            // Create a blank white canvas
+            Color[] fillColor = new Color[textureWidth * textureHeight];
+            for (int i = 0; i < fillColor.Length; i++)
+            {
+                fillColor[i] = Color.white;
+            }
+            
+            // Apply the blank pixels to the texture
+            if (texture != null)
+            {
+                texture.SetPixels(fillColor);
+                texture.Apply();
+                Debug.Log("[PaintScript] Canvas cleared successfully");
+            }
+            else
+            {
+                Debug.LogError("[PaintScript] Cannot clear canvas - texture is null");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[PaintScript] Error clearing canvas: {e.Message}");
         }
     }
 }

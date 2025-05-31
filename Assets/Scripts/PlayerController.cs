@@ -163,34 +163,78 @@ public class PlayerController : MonoBehaviour
     
     public void ClearCanvas()
     {
-        Color[] pixels = paintingTexture.GetPixels();
-        for (int i = 0; i < pixels.Length; i++)
+        try
         {
-            pixels[i] = Color.clear;
+            Debug.Log("[PlayerController] Clearing canvas...");
+            
+            if (paintingTexture == null)
+            {
+                Debug.LogError("[PlayerController] Cannot clear canvas - paintingTexture is null");
+                return;
+            }
+            
+            Color[] pixels = paintingTexture.GetPixels();
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                pixels[i] = Color.white; // Use white instead of clear for consistent behavior
+            }
+            paintingTexture.SetPixels(pixels);
+            paintingTexture.Apply();
+            
+            Debug.Log("[PlayerController] Canvas cleared successfully");
         }
-        paintingTexture.SetPixels(pixels);
-        paintingTexture.Apply();
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[PlayerController] Error clearing canvas: {e.Message}");
+        }
     }
     
     public void SubmitPainting()
     {
-        // Create a submission with the current painting
-        currentSubmission = new PaintingSubmission
+        try
         {
-            emotion = "Happy", // This would be set by the player's painting
-            hairColor = currentColor, // This would be determined by the painting
-            eyeColor = currentColor, // This would be determined by the painting
-            accessory = "None" // This would be determined by the painting
-        };
-        
-        // Notify the GameManager
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.SubmitPainting(currentSubmission);
+            Debug.Log("[PlayerController] Submitting painting...");
+            
+            // Create a submission with the current painting
+            currentSubmission = new PaintingSubmission
+            {
+                emotion = "Happy", // This would be set by the player's painting
+                hairColor = currentColor, // This would be determined by the painting
+                eyeColor = currentColor, // This would be determined by the painting
+                accessory = "None" // This would be determined by the painting
+            };
+            
+            Debug.Log($"[PlayerController] Created submission with emotion:{currentSubmission.emotion}, " + 
+                      $"hair:{currentSubmission.hairColor}, eyes:{currentSubmission.eyeColor}, " + 
+                      $"accessory:{currentSubmission.accessory}");
+            
+            // Notify the GameManager
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.SubmitPainting(currentSubmission);
+                Debug.Log("[PlayerController] Submission sent to GameManager");
+            }
+            else
+            {
+                Debug.LogError("[PlayerController] Cannot submit painting - GameManager.Instance is null");
+            }
+            
+            // Clear for next painting
+            Debug.Log("[PlayerController] Clearing canvas after submission");
+            ClearCanvas();
+            
+            // Also try to clear using PaintScript directly as a backup
+            PaintScript paintScript = FindFirstObjectByType<PaintScript>();
+            if (paintScript != null)
+            {
+                Debug.Log("[PlayerController] Also clearing via PaintScript for reliability");
+                paintScript.ClearCanvas();
+            }
         }
-        
-        // Clear for next painting
-        ClearCanvas();
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[PlayerController] Error submitting painting: {e.Message}");
+        }
     }
     
     public void SetBrushSize(float size)
