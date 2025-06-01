@@ -171,6 +171,21 @@ public class UIManager : MonoBehaviour
             SelectColor(0); 
         }
     }
+    
+    public void OnBrushSizeChanged(float newSize)
+    {
+        // Find PaintScript and update its brush size
+        PaintScript paintScript = FindFirstObjectByType<PaintScript>();
+        if (paintScript != null)
+        {
+            paintScript.BrushSlider(newSize);
+            Debug.Log($"[UIManager] Brush size changed to {newSize}");
+        }
+        else
+        {
+            Debug.LogError("[UIManager] Cannot update brush size - PaintScript not found");
+        }
+    }
 }
 
 [System.Serializable]

@@ -15,12 +15,19 @@ public class PlayerController : MonoBehaviour
     public float paintConsumptionRate = 0.1f;
     
     [Header("Color Palette")]
-    public Color[] availableColors;
+    public Color[] availableColors = new Color[]
+    {
+        Color.red,
+        Color.blue,
+        Color.green,
+        Color.yellow,
+        Color.black
+    };
     
     // Current painting state
     private Texture2D paintingTexture;
     private Vector2Int lastPixelPosition;
-    private bool isPainting = false;
+    // isPainting moved to PaintScript
     
     // Current submission
     private PaintingSubmission currentSubmission;
@@ -29,32 +36,20 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         paint = FindFirstObjectByType<PaintScript>();
-        InitializePaintingCanvas();
         
         // Initialize with first color
-        if (availableColors.Length > 0)
+        if (availableColors.Length > 0) {
             currentColor = availableColors[0];
+            // Set initial color in PaintScript too
+            if (paint != null) {
+                paint.paintColor = currentColor;
+            }
+        }
+        
+        Debug.Log("[PlayerController] Initialized with PaintScript reference: " + (paint != null));
     }
     
-    private void InitializePaintingCanvas()
-    {
-        // Create a new texture for painting
-        int width = 256;
-        int height = 256;
-        paintingTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-        
-        // Fill with transparent color
-        Color[] pixels = new Color[width * height];
-        for (int i = 0; i < pixels.Length; i++)
-        {
-            pixels[i] = Color.clear;
-        }
-        paintingTexture.SetPixels(pixels);
-        paintingTexture.Apply();
-        
-        // Apply to the UI Image
-        paintingImage.sprite = Sprite.Create(paintingTexture, new Rect(0, 0, width, height), Vector2.one * 0.5f);
-    }
+    // Removed InitializePaintingCanvas as it's now handled by PaintScript
     
     private void Update()
     {
@@ -83,93 +78,25 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void StartPainting()
-    {
-        Vector2 localPoint;
-        if (IsPointerOverCanvas(out localPoint))
-        {
-            isPainting = true;
-            PaintAtPosition(localPoint);
-        }
-    }
-    
-    private void ContinuePainting()
-    {
-        if (!isPainting) return;
-        
-        Vector2 localPoint;
-        if (IsPointerOverCanvas(out localPoint))
-        {
-            PaintAtPosition(localPoint);
-        }
-    }
-    
-    
-    private bool IsPointerOverCanvas(out Vector2 localPoint)
-    {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            paintingCanvas.transform as RectTransform, 
-            Input.mousePosition, 
-            paintingCamera, 
-            out localPoint);
-            
-        Rect rect = (paintingCanvas.transform as RectTransform).rect;
-        return rect.Contains(localPoint);
-    }
-    
-    private void PaintAtPosition(Vector2 localPoint)
-    {
-        // Convert local point to texture coordinates
-        Rect rect = (paintingCanvas.transform as RectTransform).rect;
-        float x = (localPoint.x + rect.width * 0.5f) / rect.width * paintingTexture.width;
-        float y = (localPoint.y + rect.height * 0.5f) / rect.height * paintingTexture.height;
-        
-        // Paint a circle at the current position
-        int radius = Mathf.RoundToInt(brushSize * paintingTexture.width * 0.1f);
-        int xStart = Mathf.RoundToInt(x - radius);
-        int yStart = Mathf.RoundToInt(y - radius);
-        
-        for (int i = -radius; i <= radius; i++)
-        {
-            for (int j = -radius; j <= radius; j++)
-            {
-                int px = xStart + i;
-                int py = yStart + j;
-                
-                // Check if within circle
-                if (i * i + j * j <= radius * radius && 
-                    px >= 0 && px < paintingTexture.width && 
-                    py >= 0 && py < paintingTexture.height)
-                {
-                    paintingTexture.SetPixel(px, py, currentColor);
-                }
-            }
-        }
-        
-        paintingTexture.Apply();
-    }
+    // Removed painting functionality as it's now handled by PaintScript
+    // These methods weren't being used anymore
     
     public void ClearCanvas()
     {
         try
         {
-            Debug.Log("[PlayerController] Clearing canvas...");
+            Debug.Log("[PlayerController] Delegating canvas clearing to PaintScript");
             
-            if (paintingTexture == null)
+            // Simply use PaintScript's clearing function instead
+            if (paint != null)
             {
-                Debug.LogError("[PlayerController] Cannot clear canvas - paintingTexture is null");
-                return;
+                paint.ClearCanvas();
+                Debug.Log("[PlayerController] Canvas cleared via PaintScript");
             }
-            
-            Color[] pixels = paintingTexture.GetPixels();
-            for (int i = 0; i < pixels.Length; i++)
+            else
             {
-                pixels[i] = Color.white; // Use white instead of clear for consistent behavior
+                Debug.LogError("[PlayerController] Cannot clear canvas - PaintScript reference is null");
             }
-            paintingTexture.SetPixels(pixels);
-            paintingTexture.Apply();
-            
-            Debug.Log("[PlayerController] Canvas cleared successfully");
         }
         catch (System.Exception e)
         {
@@ -207,17 +134,9 @@ public class PlayerController : MonoBehaviour
                 Debug.LogError("[PlayerController] Cannot submit painting - GameManager.Instance is null");
             }
             
-            // Clear for next painting
+            // Clear for next painting (we're already using PaintScript for this)
             Debug.Log("[PlayerController] Clearing canvas after submission");
-            ClearCanvas();
-            
-            // Also try to clear using PaintScript directly as a backup
-            PaintScript paintScript = FindFirstObjectByType<PaintScript>();
-            if (paintScript != null)
-            {
-                Debug.Log("[PlayerController] Also clearing via PaintScript for reliability");
-                paintScript.ClearCanvas();
-            }
+            ClearCanvas(); // This method now delegates to PaintScript anyway
         }
         catch (System.Exception e)
         {
