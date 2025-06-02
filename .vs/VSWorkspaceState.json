@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Assets",
+    "\\Assets\\Music & sfx",
     "\\Assets\\Scripts"
   ],
-  "SelectedNode": "\\Assets\\Scripts\\PaintScript.cs",
+  "SelectedNode": "\\Assets\\Scripts\\PlayerController.cs",
   "PreviewInSolutionExplorer": false
 }

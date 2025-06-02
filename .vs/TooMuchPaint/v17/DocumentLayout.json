@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\TextBubbleScript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\TextBubbleScript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PaintScript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PaintScript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\UIManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\UIManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PaintScript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PaintScript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\NPCController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\NPCController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TextBubbleScript.cs",
-              "DocumentMoniker": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\TextBubbleScript.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\TextBubbleScript.cs",
-              "ToolTip": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\TextBubbleScript.cs",
-              "RelativeToolTip": "Assets\\Scripts\\TextBubbleScript.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAADwvywAAABcAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T19:02:49.47Z",
+              "WhenOpened": "2025-06-01T21:33:49.43Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAACYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T17:03:34.421Z"
+              "WhenOpened": "2025-06-01T20:40:20.481Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PaintScript.cs",
               "DocumentMoniker": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PaintScript.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PaintScript.cs",
               "ToolTip": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\PaintScript.cs",
               "RelativeToolTip": "Assets\\Scripts\\PaintScript.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAADwvyUAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAKkAAAAAAAAAAADgv7UAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T16:04:25.022Z"
+              "WhenOpened": "2025-06-01T20:35:04.084Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "UIManager.cs",
               "DocumentMoniker": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\UIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UIManager.cs",
               "ToolTip": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\UIManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\UIManager.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAAAKoAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T15:45:50.917Z"
+              "WhenOpened": "2025-06-01T20:34:47.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NPCController.cs",
+              "DocumentMoniker": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\NPCController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\NPCController.cs",
+              "ToolTip": "C:\\Users\\gioth\\Documents\\GitHub\\TooMuchPaint\\Assets\\Scripts\\NPCController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\NPCController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T20:41:01.524Z"
             }
           ]
         }
