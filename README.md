@@ -51,7 +51,7 @@ TooMuchPaint/
 
 - **Language:** C#
 - **Files:** 16
-- **Lines of Code:** 1,440
+- **Lines of Code:** 1,490
 - **Status:** Portfolio-Ready
 
 ## 🚧 Future Enhancements
