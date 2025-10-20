@@ -1,8 +1,6 @@
 # TooMuchPaint
 
-**Technical Summary:**
-
-*TooMuchPaint* is a C# application designed for game developers and artists participating in Game Jams. It provides a user-friendly interface and a robust toolset for creating visually appealing game environments and characters within the Unity Game Engine. The application is built using C# language. No APIs, databases, or deployment processes are utilized in the current version.
+C# Application. Designed for game developers and artists in Game Jams. Built with C#. No APIs, databases, or deployment processes utilized.
 
 ![Language](https://img.shields.io/badge/language-C#-blue)
 ![Status](https://img.shields.io/badge/status-Portfolio-Ready-green)
@@ -18,7 +16,7 @@
 ## 📊 Project Statistics
 
 - **Total Files:** 16
-- **Lines of Code:** 1,453
+- **Lines of Code:** 1,442
 - **Primary Language:** C#
 - **Development Status:** Portfolio-Ready
 
