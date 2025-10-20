@@ -1,25 +1,75 @@
-# TooMuchPaint
+# TooMuchPaint - Submission for Game Jam
 
-C# Application. Designed for game developers and artists in Game Jams. Built with C#. No APIs, databases, or deployment processes utilized.
-
-![Language](https://img.shields.io/badge/language-C#-blue)
-![Status](https://img.shields.io/badge/status-Portfolio-Ready-green)
+Submission for Game Jam
+- Unity Game Engine
 
 ## ✨ Key Features
 
+### Notable Features
 - Unity Game Engine
 
-## 🛠️ Tech Stack
+## 🛠️ Technology Stack
 
+**Core Technologies:**
 - C#
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+
+- Git for version control
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/TooMuchPaint.git
+cd TooMuchPaint
+
+```
+
+## 📖 Usage
+
+Run the main application file to start the project.
+
+## 📁 Project Structure
+
+```
+TooMuchPaint/
+├── src/              # Source code
+├── docs/             # Documentation
+├── tests/            # Test files
+└── README.md         # This file
+```
+
+## 🔧 Technical Highlights
+
+- Clean, maintainable code structure
+- Professional development practices
 
 ## 📊 Project Statistics
 
-- **Total Files:** 16
-- **Lines of Code:** 1,442
-- **Primary Language:** C#
-- **Development Status:** Portfolio-Ready
+- **Language:** C#
+- **Files:** 16
+- **Lines of Code:** 1,440
+- **Status:** Portfolio-Ready
+
+## 🚧 Future Enhancements
+
+- [ ] Expand test coverage to 80%+
+- [ ] Add CI/CD pipeline automation
+- [ ] Implement monitoring and logging system
+
+## 📄 License
+
+This project is available for portfolio and educational purposes.
+
+## 👤 Author
+
+Built to demonstrate professional development capabilities including:
+- Version control with Git
+- Code documentation and technical writing
 
 ---
 
-*This README was auto-generated with AI assistance to showcase this project as part of a development portfolio.*
+*For inquiries or collaboration opportunities, please reach out via GitHub.*
